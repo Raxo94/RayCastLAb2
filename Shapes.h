@@ -162,3 +162,15 @@ public:
 	MOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color);
 	MOBB(Vec b, float Hu, float Hv, float Hw, Color _color);
 };
+
+
+class MyPlane : public Shape
+{
+	Vec		n;
+	float	d;
+public:
+	void test(Ray& ray, HitData& hit);
+	Vec normal(Vec &point);
+	MyPlane(Vec normal, float _d, Color color);
+	~MyPlane();
+};
