@@ -174,3 +174,14 @@ public:
 	MyPlane(Vec normal, float _d, Color color);
 	~MyPlane();
 };
+
+class MySphere : public Shape
+{
+	Vec center;
+	float radius;
+	float radius2;
+public:
+	void test(Ray& ray, HitData& hit);
+	Vec normal(Vec &point);
+	MySphere(Vec _center, float _radius, Color _color);
+};
