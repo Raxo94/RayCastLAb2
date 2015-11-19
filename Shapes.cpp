@@ -93,14 +93,37 @@ void  MySphere::test(Ray& ray, HitData& hit)
 
 void MyTriangle::test(Ray& ray, HitData& hit)
 {
-	//Tre punkter.
-	//p1 = _p1;
-	//p2 = _p2;
-	//p3 = _p3;
 	
-	//vi behöver räkna ut t. som finns i vektorn (t,u,v)
-	Vec T = ray.o - p1;
-	//float t = (1 / (ray.d.);
+	Vec s= ray.o-p1;
+	Vec temp;
+	float t = temp.x = (1 / (-ray.d.Dot(edge0.Cross(edge1) ) ) ) * (s.Dot(edge0.Cross(edge1) ) ) ;
+	float u = temp.y = (1 / (-ray.d.Dot(edge0.Cross(edge1) ) ) ) * (-ray.d.Dot(s.Cross(edge1) ) );
+	if (u<=1 && u>=0)
+	{
+		float v = temp.y = (1 / (-ray.d.Dot(edge0.Cross(edge1)))) * (-ray.d.Dot(edge0.Cross(s)));
+
+		if ( v<=1 && v>=0 && u + v <= 1 && u + v >= 0)
+		{
+			//Seing if t is closer than hit.t
+			if (hit.lastShape == nullptr &&t >= 0 || t >= 0 && t <= hit.t)
+			{ 
+				hit.t = t;
+				hit.color = c;
+				hit.lastShape = this;
+
+				Vec n;
+
+				hit.lastNormal = n;
+			}
+			
+		}
+	}
+	
+	
+
+
+
+
 }
 
 Vec MyPlane::normal(Vec &point)

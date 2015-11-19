@@ -34,9 +34,9 @@ void buildScene()
 		shapes.push_back(dynamic_cast<Shape*>(new MySphere(Vec(400, 400, 300), 200, Color(100, 100, 0))));
 
 		// two triangles 
-		//shapes.push_back(dynamic_cast<Shape*>(new MTriangle({ 350, 100, 200 }, { 300,100,200 }, { 400,700, 30 }, { 200,0,0 })));
-		//shapes.push_back(dynamic_cast<Shape*>(new MTriangle({ 100,300,0 }, { 150,300,0 }, { 100,100,0 }, { 0,0,255 })));
-		//shapes.push_back(dynamic_cast<Shape*>(new MTriangle({ 150,300,0 }, { 150,100,0 }, { 100,100,0 }, { 0,255,255 })));
+		shapes.push_back(dynamic_cast<Shape*>(new MyTriangle({ 350, 100, 200 }, { 300,100,200 }, { 400,700, 30 }, { 200,0,0 })));
+		shapes.push_back(dynamic_cast<Shape*>(new MyTriangle({ 100,300,0 }, { 150,300,0 }, { 100,100,0 }, { 0,0,255 })));
+		shapes.push_back(dynamic_cast<Shape*>(new MyTriangle({ 150,300,0 }, { 150,100,0 }, { 100,100,0 }, { 0,255,255 })));
 
 
 		float size = 20;
