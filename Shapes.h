@@ -45,6 +45,16 @@ struct Vec
 		y /= l;
 		z /= l;
 	}
+
+	Vec Cross(Vec other)
+	{
+		Vec Temp;
+		Temp.x = (y * other.z) - (z * other.y);
+		Temp.y = -((x * other.z) - (z *other.x));
+		Temp.z = (x * other.y) - (y *other.x);
+
+		return Temp;
+	}
 };
 
 struct Ray
@@ -103,65 +113,65 @@ public:
 };
 
 
-// for each class, add the necessary data that describes the shape,
-// implement a constructor, and implement the test function
-// EACH CLASS SHOULD INHERIT FROM SHAPE,
-class MPlane : public Shape
-{
-	Vec		n;
-	float	d;
-public:
-	void test(Ray& ray, HitData& hit);
-	Vec normal(Vec &point);
-	MPlane(Vec normal, float _d, Color color);
-};
+	// for each class, add the necessary data that describes the shape,
+	// implement a constructor, and implement the test function
+	// EACH CLASS SHOULD INHERIT FROM SHAPE,
+	class MPlane : public Shape
+	{
+		Vec		n;
+		float	d;
+	public:
+		void test(Ray& ray, HitData& hit);
+		Vec normal(Vec &point);
+		MPlane(Vec normal, float _d, Color color);
+	};
 
-class MSphere : public Shape
-{
-	Vec center;
-	float radius;
-	float radius2;
-public:
-	void test(Ray& ray, HitData& hit);
-	Vec normal(Vec &point);
-	MSphere(Vec _center, float _radius, Color _color);
-};
+	class MSphere : public Shape
+	{
+		Vec center;
+		float radius;
+		float radius2;
+	public:
+		void test(Ray& ray, HitData& hit);
+		Vec normal(Vec &point);
+		MSphere(Vec _center, float _radius, Color _color);
+	};
 
-class MTriangle : public Shape
-{
-	Vec p1, p2, p3, nor;
-	Vec edge0, edge1;
+	class MTriangle : public Shape
+	{
+		Vec p1, p2, p3, nor;
+		Vec edge0, edge1;
 	public:
 		void test(Ray& ray, HitData& hit);
 		Vec normal(Vec &point) { return nor; }
 		MTriangle(Vec _p1, Vec _p2, Vec _p3, Color _color);
 
-};
+	};
 
-class MOBB : public Shape
-{
-public:
-	Vec Bcenter;
-	Vec Bu;
-	Vec Bv;
-	Vec Bw;
+	class MOBB : public Shape
+	{
+	public:
+		Vec Bcenter;
+		Vec Bu;
+		Vec Bv;
+		Vec Bw;
 
-	Vec Pu,Puo;
-	Vec Pv,Pvo;
-	Vec Pw,Pwo;
+		Vec Pu, Puo;
+		Vec Pv, Pvo;
+		Vec Pw, Pwo;
 
-	float halfBu;
-	float halfBv;
-	float halfBw;
+		float halfBu;
+		float halfBv;
+		float halfBw;
 
-	void test(Ray& ray, HitData& hit);
-	Vec normal(Vec& point);
+		void test(Ray& ray, HitData& hit);
+		Vec normal(Vec& point);
 
-	// Center point, lenght U vector, length V vector, length W vector, color
+		// Center point, lenght U vector, length V vector, length W vector, color
 
-	MOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color);
-	MOBB(Vec b, float Hu, float Hv, float Hw, Color _color);
-};
+		MOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color);
+		MOBB(Vec b, float Hu, float Hv, float Hw, Color _color);
+	};
 
 
 class MyPlane : public Shape
@@ -184,4 +194,15 @@ public:
 	void test(Ray& ray, HitData& hit);
 	Vec normal(Vec &point);
 	MySphere(Vec _center, float _radius, Color _color);
+};
+
+class MyTriangle : public Shape
+{
+	Vec p1, p2, p3, nor;
+	Vec edge0, edge1;
+public:
+	void test(Ray& ray, HitData& hit);
+	Vec normal(Vec &point) { return nor; }
+	MyTriangle(Vec _p1, Vec _p2, Vec _p3, Color _color);
+
 };
