@@ -182,7 +182,7 @@ public:
 	void test(Ray& ray, HitData& hit);
 	Vec normal(Vec &point);
 	MyPlane(Vec normal, float _d, Color color);
-	~MyPlane();
+	Color shade(Vec& light, const Vec& cam, Ray& r, HitData& h);
 };
 
 class MySphere : public Shape
@@ -194,6 +194,7 @@ public:
 	void test(Ray& ray, HitData& hit);
 	Vec normal(Vec &point);
 	MySphere(Vec _center, float _radius, Color _color);
+	Color shade(Vec& light, const Vec& cam, Ray& r, HitData& h);
 };
 
 class MyTriangle : public Shape
@@ -204,5 +205,31 @@ public:
 	void test(Ray& ray, HitData& hit);
 	Vec normal(Vec &point) { return nor; }
 	MyTriangle(Vec _p1, Vec _p2, Vec _p3, Color _color);
+	Color shade(Vec& light, const Vec& cam, Ray& r, HitData& h);
 
+};
+
+class MyOBB : public Shape
+{
+public:
+	Vec Bcenter;
+	Vec Bu;
+	Vec Bv;
+	Vec Bw;
+
+	Vec Pu, Puo;
+	Vec Pv, Pvo;
+	Vec Pw, Pwo;
+
+	float halfBu;
+	float halfBv;
+	float halfBw;
+
+	void test(Ray& ray, HitData& hit);
+	Vec normal(Vec& point);
+	Color shade(Vec& light, const Vec& cam, Ray& r, HitData& h);
+	// Center point, lenght U vector, length V vector, length W vector, color
+
+	MyOBB(Vec b, Vec b1, Vec b2, Vec b3, float Hu, float Hv, float Hw, Color _color);
+	MyOBB(Vec b, float Hu, float Hv, float Hw, Color _color);
 };
